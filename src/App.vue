@@ -5,8 +5,8 @@
     <h3>{{ userAge }}</h3>
     <button @click="newAgeValue">Change Age</button>
     <div>
-      <input type="text" placeholder="firstname" @input="setFirstNameValue" />
-      <input type="text" placeholder="lastname" @input="setLastNameValue" />
+      <input type="text" placeholder="firstname" v-model="firstName" />
+      <input type="text" placeholder="lastname" v-model="lastName" />
     </div>
   </section>
   <section class="container">
@@ -15,8 +15,8 @@
     <h3>{{ user.age }}</h3>
     <button @click="newAgeObj">Change Age</button>
     <div>
-      <input type="text" placeholder="firstname" @input="setFirstNameObj" />
-      <input type="text" placeholder="lastname" @input="setLastNameObj" />
+      <input type="text" placeholder="firstname" v-model="user.firstName" />
+      <input type="text" placeholder="lastname" v-model="user.lastName" />
     </div>
   </section>
 </template>
@@ -44,22 +44,6 @@ function newAgeValue() {
 
 function newAgeObj() {
   return user.age++;
-}
-
-function setFirstNameValue(ev) {
-  return (firstName.value = ev.target.value);
-}
-
-function setLastNameValue(ev) {
-  return (lastName.value = ev.target.value);
-}
-
-function setFirstNameObj(ev) {
-  return (user.firstName = ev.target.value);
-}
-
-function setLastNameObj(ev) {
-  return (user.lastName = ev.target.value);
 }
 
 // Computed
