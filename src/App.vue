@@ -1,26 +1,39 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <h1>Values</h1>
+    <h2>{{ uNameValue }}</h2>
     <h3>{{ userAge }}</h3>
     <button @click="newAgeValue">Change Age</button>
+    <div>
+      <input type="text" placeholder="firstname" @input="setFirstNameValue" />
+      <input type="text" placeholder="lastname" @input="setLastNameValue" />
+    </div>
   </section>
   <section class="container">
-    <h2>{{ user.name }}</h2>
+    <h1>Objects</h1>
+    <h2>{{ uNameObj }}</h2>
     <h3>{{ user.age }}</h3>
     <button @click="newAgeObj">Change Age</button>
+    <div>
+      <input type="text" placeholder="firstname" @input="setFirstNameObj" />
+      <input type="text" placeholder="lastname" @input="setLastNameObj" />
+    </div>
   </section>
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, computed } from "vue";
 
 // Values
-const userName = ref("Laura");
+const firstName = ref("");
+const lastName = ref("");
 const userAge = ref(31);
 
 // Objects
 const user = reactive({
-  name: "Robert",
+  userName: "Silver",
+  firstName: "",
+  lastName: "",
   age: 31,
 });
 
@@ -32,6 +45,34 @@ function newAgeValue() {
 function newAgeObj() {
   return user.age++;
 }
+
+function setFirstNameValue(ev) {
+  return (firstName.value = ev.target.value);
+}
+
+function setLastNameValue(ev) {
+  return (lastName.value = ev.target.value);
+}
+
+function setFirstNameObj(ev) {
+  return (user.firstName = ev.target.value);
+}
+
+function setLastNameObj(ev) {
+  return (user.lastName = ev.target.value);
+}
+
+// Computed
+
+const uNameValue = computed(function () {
+  return `${firstName.value} ${lastName.value}`;
+});
+
+const uNameObj = computed(function () {
+  return `${user.firstName} ${user.lastName}`;
+});
+
+//
 </script>
 
 <style>
