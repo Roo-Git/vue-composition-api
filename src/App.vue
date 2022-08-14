@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from "vue";
+import { reactive, ref, computed, watch } from "vue";
 
 // Values
 const firstName = ref("");
@@ -47,7 +47,6 @@ function newAgeObj() {
 }
 
 // Computed
-
 const uNameValue = computed(function () {
   return `${firstName.value} ${lastName.value}`;
 });
@@ -56,7 +55,11 @@ const uNameObj = computed(function () {
   return `${user.firstName} ${user.lastName}`;
 });
 
-//
+// Watch
+watch(userAge, function (newValue, oldValue) {
+  console.log(`Old age: ${oldValue}`);
+  console.log(`New age: ${newValue}`);
+});
 </script>
 
 <style>
